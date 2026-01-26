@@ -1,0 +1,53 @@
+﻿using FoodAndDrinkWithCore.Data.Models;
+
+namespace FoodAndDrinkWithCore.Repositories
+{
+	public class GenericRepository<T> where T:class//generic repo bir değer,bir isim alır bu ismi döndürür(T,Table...) bu generic repo ile ilgli bir şart vardı bu T değeri mutlaka class olmak zorunda ve new anahtar sözcüğünü barındırmalıdır
+	{
+		//food ve category repositorylerinde hazırlamış olduğumuz metotları buraya bir iskelet yapısı şeklinde hazırlamış olacağız
+		/*Oluşturulan Repositorylerde paramaetre olarak sınıftan değer alıyorduk yani kullanacağımız tablo hangisiyse ondan nesne üretiyorduk mesela
+		public void CategoryRemove(Category _category)
+		{
+
+			context.categories.Remove(_category);
+			context.SaveChanges();
+		}
+
+		Artık değerlerimi T değerinden alıyor olacağız
+
+		Sınıfı görmüş olduğumuz yerlere: return context.categories.ToList(),context.categories.Add(_category);
+		context.categories.Add(_category),context.categories.Add(_category),context.categories.Find(id) kısımlarındaki categories kısımları
+		erine artık Set<T>() Atamış olacağız
+		 */
+		//5 temel crud işleminin tamamını birer metot olarak burada tanımlayacağız:listeleme,ekleme,silme,güncelleme,getirme
+		Context context = new Context();
+		public List<T> CategoryList()
+		{
+			return context.Set<T>().ToList();//listeleme işlemimiz bu şekilde olacak
+
+		}
+		public void CategoryAdd(T p)
+		{
+			context.Set<T>().Add(p);
+			context.SaveChanges();
+		}
+		public void CategoryRemove(T p)
+		{
+
+			context.Set<T>().Add( p);
+			context.SaveChanges();
+		}
+		public void CategoryUpdate(T p)
+		{
+			context.Set<T>().Add(p);
+			context.SaveChanges();
+		}
+		public void CategoryFind(int id)
+		{
+			context.Set<T>().Find(id);
+		}
+		//Artık food repositoryden bir şey almamıza gerek kalmadı onun
+		//içindekileri sildik. şimdi devreye bu generic repoyu her yerde kullanmak için kalıtım giriyor
+
+	}
+}
