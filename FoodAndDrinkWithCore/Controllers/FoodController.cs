@@ -8,7 +8,7 @@ namespace FoodAndDrinkWithCore.Controllers
 		public IActionResult Index()
 		{
 			FoodRepository foodRepository = new FoodRepository();
-			return View(foodRepository.TList());
+			return View(foodRepository.TList("Category"));//category sınıfından bir değer alacağımız için(name) parametre olarak onu yazdık
 		}
 	}
 }

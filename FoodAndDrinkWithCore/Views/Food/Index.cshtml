@@ -1,0 +1,32 @@
+﻿@model List<FoodAndDrinkWithCore.Data.Models.Food>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 style="margin-bottom:10px">Food List</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Food ID</th>
+        <th>Food Name</th>
+        <th>Food Price</th>
+        <th>Food Stock</th>
+        <th>Category Name</th>
+        <th>Delete</th>
+        <th>Update</th>
+        <th>Details</th>
+    </tr>
+    @foreach(var x in Model)
+    {
+        <tr>
+            <th>@x.FoodID</th>
+            <td>@x.FoodName</td>
+            <td>@x.FoodPrice</td>
+            <td>@x.FoodStock</td>
+            <td>@x.Category.CategoryName</td>
+            <td><a class="btn btn-danger">Delete</a></td>
+            <td><a class="btn btn-info">Update</a></td>
+            <td><a class="btn btn-primary">Details</a></td>
+        </tr>
+    }
+</table>
+<a class="btn btn-success">New Food</a>

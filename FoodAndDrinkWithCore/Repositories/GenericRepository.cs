@@ -1,4 +1,5 @@
 ﻿using FoodAndDrinkWithCore.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FoodAndDrinkWithCore.Repositories
 {
@@ -46,7 +47,12 @@ namespace FoodAndDrinkWithCore.Repositories
 		{
 			context.Set<T>().Find(id);
 		}
-		//Artık food repositoryden bir şey almamıza gerek kalmadı onun
+		public List<T>TList(string p)//food tablosunda category name veya categorye ait her şeyi gösterebilmek için. aynı işlemi yanı category sınıfında da food değerlerini gösterebiliriz
+		{
+			return context.Set<T>().Include(p).ToList();
+		}
+			
+			//Artık food repositoryden bir şey almamıza gerek kalmadı onun
 		//içindekileri sildik. şimdi devreye bu generic repoyu her yerde kullanmak için kalıtım giriyor
 
 	}
