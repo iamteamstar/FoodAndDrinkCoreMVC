@@ -21,28 +21,28 @@ namespace FoodAndDrinkWithCore.Repositories
 		 */
 		//5 temel crud işleminin tamamını birer metot olarak burada tanımlayacağız:listeleme,ekleme,silme,güncelleme,getirme
 		Context context = new Context();
-		public List<T> CategoryList()
+		public List<T> TList()
 		{
 			return context.Set<T>().ToList();//listeleme işlemimiz bu şekilde olacak
 
 		}
-		public void CategoryAdd(T p)
+		public void TAdd(T p)
 		{
 			context.Set<T>().Add(p);
 			context.SaveChanges();
 		}
-		public void CategoryRemove(T p)
+		public void TRemove(T p)
 		{
 
 			context.Set<T>().Add( p);
 			context.SaveChanges();
 		}
-		public void CategoryUpdate(T p)
+		public void TUpdate(T p)
 		{
 			context.Set<T>().Add(p);
 			context.SaveChanges();
 		}
-		public void CategoryFind(int id)
+		public void TFind(int id)
 		{
 			context.Set<T>().Find(id);
 		}
