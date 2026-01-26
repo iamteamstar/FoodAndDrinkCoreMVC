@@ -249,3 +249,5 @@ C:\Users\technopc\Desktop\Full Stack Web\Backend\Files\FoodAndDrinkWithCore\Food
 C:\Users\technopc\Desktop\Full Stack Web\Backend\Files\FoodAndDrinkWithCore\FoodAndDrinkWithCore\obj\Debug\net8.0\FoodAndDrinkWithCore.pdb
 C:\Users\technopc\Desktop\Full Stack Web\Backend\Files\FoodAndDrinkWithCore\FoodAndDrinkWithCore\obj\Debug\net8.0\FoodAndDrinkWithCore.genruntimeconfig.cache
 C:\Users\technopc\Desktop\Full Stack Web\Backend\Files\FoodAndDrinkWithCore\FoodAndDrinkWithCore\obj\Debug\net8.0\ref\FoodAndDrinkWithCore.dll
+C:\Users\technopc\Desktop\Full Stack Web\Backend\Files\FoodAndDrinkWithCore\FoodAndDrinkWithCore\obj\Debug\net8.0\FoodAndDrinkWithCore.RazorAssemblyInfo.cache
+C:\Users\technopc\Desktop\Full Stack Web\Backend\Files\FoodAndDrinkWithCore\FoodAndDrinkWithCore\obj\Debug\net8.0\FoodAndDrinkWithCore.RazorAssemblyInfo.cs

@@ -1,0 +1,30 @@
+﻿@model List<FoodAndDrinkWithCore.Data.Models.Category>;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<h2 style="margin-bottom:10px">Category List</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>Category ID</th>
+        <th>Category Name</th>
+        <th>Delete</th>
+        <th>Update</th>
+    </tr>
+    @foreach(var x in Model)
+    {
+    <tr>
+        <td>@x.CategoryID</td>
+        <td>@x.CategoryName</td>
+        <td><a class="btn btn-danger">Delete</a></td>
+        <td><a class="btn btn-info">Update</a></td>
+        
+    </tr>
+    }
+</table>
+<a class="btn btn-success">New Category</a>
