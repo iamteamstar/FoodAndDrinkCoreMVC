@@ -1,0 +1,21 @@
+﻿@model FoodAndDrinkWithCore.Data.Models.Food;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("FoodAdd", "Food", FormMethod.Post)) 
+{
+    @Html.LabelFor(x=>x.FoodName)
+    @Html.TextBoxFor(x=>x.FoodName, new {@class="form-control",@style="margin-bottom:10px"})
+    @Html.LabelFor(x => x.FoodPrice)
+    @Html.TextBoxFor(x => x.FoodPrice, new { @class = "form-control", @style = "margin-bottom:10px" })
+    @Html.LabelFor(x => x.FoodStock)
+    @Html.TextBoxFor(x => x.FoodStock, new { @class = "form-control", @style = "margin-bottom:10px" })
+    @Html.LabelFor(x => x.FoodImageUrl)
+    @Html.TextBoxFor(x => x.FoodImageUrl, new { @class = "form-control", @style = "margin-bottom:10px" })
+    @Html.LabelFor(x => x.Category.CategoryName)
+    @Html.TextBoxFor(x => x.Category.CategoryName, new { @class = "form-control", @style = "margin-bottom:10px" })
+    @Html.LabelFor(x => x.FoodDesc)
+    @Html.TextBoxFor(x => x.FoodDesc, new { @class = "form-control" })
+    <button class="btn btn-success">Add Food</button>
+}

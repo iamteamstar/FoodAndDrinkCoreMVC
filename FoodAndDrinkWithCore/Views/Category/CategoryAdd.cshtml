@@ -1,0 +1,29 @@
+﻿@model FoodAndDrinkWithCore.Data.Models.Category;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Category Add</h2>
+
+@* <form class="form-group" method="post">
+@Html.LabelFor(x=>x.CategoryName)
+@Html.TextBoxFor(x=>x.CategoryName,new{@class="form-control"})
+@Html.LabelFor(x => x.CategoryDesc)
+@Html.TextBoxFor(x => x.CategoryDesc, new { @class = "form-control" })
+<button class="btn btn-success">Category Add</button>
+</form> 
+@using (Html.BeginForm("CategoryAdd","Category",FormMethod.Post))
+{
+    @Html.LabelFor(x => x.CategoryName)
+    @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" ,@style="margin-bottom:10px"} )
+    @Html.LabelFor(x => x.CategoryDesc)
+    @Html.TextBoxFor(x => x.CategoryDesc, new { @class = "form-control" })
+    <button class="btn btn-success">Category Add</button>
+}*@
+<form asp-controller="Category" asp-action="CategoryAdd" method="post">
+    @*ya da <form action="/Category/CategoryAdd" method="post">*@
+    @Html.LabelFor(x => x.CategoryName)
+    @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
+    @Html.LabelFor(x => x.CategoryDesc)
+    @Html.TextBoxFor(x => x.CategoryDesc, new { @class = "form-control" })
+    <button class="btn btn-success">Category Add</button>
+</form>
