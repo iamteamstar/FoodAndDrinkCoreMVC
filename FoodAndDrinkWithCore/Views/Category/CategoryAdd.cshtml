@@ -22,8 +22,12 @@
 <form asp-controller="Category" asp-action="CategoryAdd" method="post">
     @*ya da <form action="/Category/CategoryAdd" method="post">*@
     @Html.LabelFor(x => x.CategoryName)
-    @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control",@style="margin-bottom:10px" })
+    @Html.ValidationMessageFor(x=>x.CategoryName,"",new {@style="color:red;"}) @*önce hangi alan için kullanacağımızı yazıyoruz(name). daha sonra aldığı parametrelerden diğerini "" ile boş bırakırız yoksa o mesaj yani boş geçilme durumunda çıkması gereken mesaj direkt hep çıkar*@
+    <br />
     @Html.LabelFor(x => x.CategoryDesc)
     @Html.TextBoxFor(x => x.CategoryDesc, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CategoryDesc, "", new { @style = "color:red;" })
+    <br />  
     <button class="btn btn-success">Category Add</button>
 </form>

@@ -22,6 +22,10 @@ namespace FoodAndDrinkWithCore.Controllers
 		[HttpPost]
 		public IActionResult CategoryAdd(Category _category)
 		{
+			if(!ModelState.IsValid)//eğerben validasyondan geçemediysem yani [Required] ile doldurulması gerekli olduğunu belirttiğimiz alanların(CategoryName,Desc...) boş geçilmeye çalışılması durumunda  
+			{
+				return View("CategoryAdd");
+			}
 			categoryRepository.TAdd(_category);//generic repo kullanıdğımız için saveChanges yapmamıza gerek yok.
 			return RedirectToAction("Index");
 		}
