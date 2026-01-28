@@ -56,5 +56,12 @@ public IActionResult CategoryAdd(Category _category)
 			categoryRepository.TUpdate(x);
 			return RedirectToAction("Index");
 		}
+		public IActionResult CategoryRemove(int id)
+		{
+			var x = categoryRepository.TFind(id);
+			x.status = false;//silme işlemini iliklili tablolarda statüyü false yaparak yapıyoruz
+			categoryRepository.TUpdate(x);
+			return RedirectToAction("Index");
+		}
 	}
 }

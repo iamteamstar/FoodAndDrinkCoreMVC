@@ -30,12 +30,10 @@ namespace FoodAndDrinkWithCore.Controllers
 		[HttpPost]
 		public IActionResult FoodAdd(Food _food)
 		{
-			// Category nesnesi boş gelebilir, bu validasyonu bozmasın diye siliyoruz
 			ModelState.Remove("Category");
 
 			if (!ModelState.IsValid)
 			{
-				// HATA BURADAYDI: Validasyon hatası varsa listeyi tekrar doldurmalısın
 				List<SelectListItem> categoryValues = (from x in c.categories.ToList()
 													   select new SelectListItem
 													   {
@@ -55,6 +53,42 @@ namespace FoodAndDrinkWithCore.Controllers
 		{
 			
 			foodRepository.TRemove(new Food { FoodID=id});
+			return RedirectToAction("Index");
+		}
+		public IActionResult FoodFind(int id)
+		{
+			var x = foodRepository.TFind(id);
+			List<SelectListItem> categoryValues = (from y in c.categories.ToList()
+												   select new SelectListItem
+												   {
+													   Text = y.CategoryName,
+													   Value = y.CategoryID.ToString()
+												   }).ToList();
+			ViewBag.val = categoryValues;
+			Food food = new Food()
+			{
+				FoodID = x.FoodID,
+				FoodName=x.FoodName,
+				FoodDesc=x.FoodDesc,
+				FoodPrice=x.FoodPrice,
+				FoodStock=x.FoodStock,
+				CategoryID=x.CategoryID,
+				FoodImageUrl=x.FoodImageUrl
+			};
+
+			return View(food);
+		}
+		[HttpPost]
+		public IActionResult FoodUpdate(Food _food)
+		{
+			var x = foodRepository.TFind(_food.FoodID);
+			x.FoodName = _food.FoodName;
+			x.FoodPrice = _food.FoodPrice;
+			x.FoodStock = _food.FoodStock;
+			x.FoodDesc = _food.FoodDesc;
+			x.FoodImageUrl = _food.FoodImageUrl;
+			x.CategoryID = _food.CategoryID;
+			foodRepository.TUpdate(x);
 			return RedirectToAction("Index");
 		}
 	}
