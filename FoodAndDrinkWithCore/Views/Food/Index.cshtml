@@ -1,4 +1,7 @@
-﻿@model List<FoodAndDrinkWithCore.Data.Models.Food>
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+
+@model IPagedList<FoodAndDrinkWithCore.Data.Models.Food>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -29,4 +32,5 @@
         </tr>
     }
 </table>
+@Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index",new {page}))
 <a href="/Food/FoodAdd" class="btn btn-success">New Food</a>

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using FoodAndDrinkWithCore.Data.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using X.PagedList.Extensions;
 
 namespace FoodAndDrinkWithCore.Controllers
 { 
@@ -10,9 +11,9 @@ namespace FoodAndDrinkWithCore.Controllers
 	Context c = new Context();
 		FoodRepository foodRepository = new FoodRepository();
 
-		public IActionResult Index()
+		public IActionResult Index(int page=1)
 		{
-			return View(foodRepository.TList("Category"));//category sınıfından bir değer alacağımız için(name) parametre olarak onu yazdık
+			return View(foodRepository.TList("Category").ToPagedList(page,4));//category sınıfından bir değer alacağımız için(name) parametre olarak onu yazdık
 		}
 		[HttpGet]	
 		public IActionResult FoodAdd()//amacımız liste nesnesi oluşturmak, daha sonra bu listedeki değerleri viewbag ile dropdowna view tarafına göndereceğiz ve oradan da verileri listelemeyi yapacağız.
