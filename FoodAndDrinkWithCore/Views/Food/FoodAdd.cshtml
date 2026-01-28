@@ -1,4 +1,4 @@
-﻿@model FoodAndDrinkWithCore.Data.Models.Food;
+﻿@model FoodAndDrinkWithCore.Data.Models.Food
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -7,15 +7,31 @@
 {
     @Html.LabelFor(x=>x.FoodName)
     @Html.TextBoxFor(x=>x.FoodName, new {@class="form-control",@style="margin-bottom:10px"})
+    @Html.ValidationMessageFor(x => x.FoodName, "", new { @style = "color:red;" })
+    <br />
     @Html.LabelFor(x => x.FoodPrice)
     @Html.TextBoxFor(x => x.FoodPrice, new { @class = "form-control", @style = "margin-bottom:10px" })
+    @Html.ValidationMessageFor(x => x.FoodPrice, "", new { @style = "color:red;" })
+    <br />
+
     @Html.LabelFor(x => x.FoodStock)
     @Html.TextBoxFor(x => x.FoodStock, new { @class = "form-control", @style = "margin-bottom:10px" })
+    @Html.ValidationMessageFor(x => x.FoodStock, "", new { @style = "color:red;" })
+    <br />
+
     @Html.LabelFor(x => x.FoodImageUrl)
     @Html.TextBoxFor(x => x.FoodImageUrl, new { @class = "form-control", @style = "margin-bottom:10px" })
-    @Html.LabelFor(x => x.Category.CategoryName)
-    @Html.TextBoxFor(x => x.Category.CategoryName, new { @class = "form-control", @style = "margin-bottom:10px" })
+    @Html.ValidationMessageFor(x => x.FoodImageUrl, "", new { @style = "color:red;" })
+    <br />
+
+    @Html.Label("x => x.Category.CategoryID")
+    @Html.DropDownListFor(x=>x.CategoryID,(List<SelectListItem>)ViewBag.vl,new {@class="form-control"})
+    <br />
+
     @Html.LabelFor(x => x.FoodDesc)
     @Html.TextBoxFor(x => x.FoodDesc, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.FoodDesc, "", new { @style = "color:red;" })
+    <br />
+
     <button class="btn btn-success">Add Food</button>
 }
