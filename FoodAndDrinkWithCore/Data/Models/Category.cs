@@ -11,9 +11,10 @@ namespace FoodAndDrinkWithCore.Data.Models
 		[Required(ErrorMessage="category name not empty!")]
 		[Column(TypeName ="varchar(25)")]
 		public string CategoryName { get; set; }
-		[Required(ErrorMessage = "category name not empty!")]
+		[Required(ErrorMessage = "category desc not empty!")]
 		[Column(TypeName = "varchar(25)")]
 		public string CategoryDesc { get; set; }
+		public bool status { get; set; } //silme işlemi yapamayacağımız için(ilişkili tablo)statu aktif pasif yapacağız
 		public List<Food> Foods { get; set; }//bir kategorinin birden çok yiyeceği olabilir List varsa şu anlama gelir: bir kategoride birden çok yiyecek olabilir
 	}
 }

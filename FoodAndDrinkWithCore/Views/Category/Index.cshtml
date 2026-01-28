@@ -13,6 +13,7 @@
     <tr>
         <th>Category ID</th>
         <th>Category Name</th>
+        <th>Category Status</th>
         <th>Delete</th>
         <th>Update</th>
     </tr>
@@ -21,10 +22,11 @@
     <tr>
         <td>@x.CategoryID</td>
         <td>@x.CategoryName</td>
+        <td>@x.status</td>
         <td><a class="btn btn-danger">Delete</a></td>
-        <td><a class="btn btn-info">Update</a></td>
+        <td><a href="/Category/CategoryFind/@x.CategoryID" class="btn btn-info">Update</a></td>
         
     </tr>
     }
 </table>
-<a href="Category/CategoryAdd" class="btn btn-success">New Category</a>
+<a href="/Category/CategoryAdd" class="btn btn-success">New Category</a>

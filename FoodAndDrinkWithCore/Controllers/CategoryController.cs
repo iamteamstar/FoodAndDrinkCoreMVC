@@ -20,13 +20,40 @@ namespace FoodAndDrinkWithCore.Controllers
 			return View();
 		}
 		[HttpPost]
-		public IActionResult CategoryAdd(Category _category)
+public IActionResult CategoryAdd(Category _category)
+{
+    _category.status = true; // Yeni eklenen kategori varsayılan olarak aktif olsun
+    ModelState.Remove("status"); // Validasyondan bu alanı muaf tut
+    ModelState.Remove("Foods");  // İlişkili listeyi validasyondan muaf tut
+
+    if(!ModelState.IsValid)
+    {
+        return View("CategoryAdd");
+    }
+    categoryRepository.TAdd(_category);
+    return RedirectToAction("Index");
+}
+		public IActionResult CategoryFind(int id)
 		{
-			if(!ModelState.IsValid)//eğerben validasyondan geçemediysem yani [Required] ile doldurulması gerekli olduğunu belirttiğimiz alanların(CategoryName,Desc...) boş geçilmeye çalışılması durumunda  
+			var x = categoryRepository.TFind(id);
+			Category category = new Category()
 			{
-				return View("CategoryAdd");
-			}
-			categoryRepository.TAdd(_category);//generic repo kullanıdğımız için saveChanges yapmamıza gerek yok.
+				CategoryName=x.CategoryName,
+				CategoryDesc=x.CategoryDesc,
+				status=x.status,
+				CategoryID=x.CategoryID
+				
+			};
+			return View(category);
+		}
+		[HttpPost]
+		public IActionResult CategoryUpdate(Category _category)
+		{
+			var x = categoryRepository.TFind(_category.CategoryID);
+			x.CategoryName = _category.CategoryName;
+			x.CategoryDesc = _category.CategoryDesc;
+			x.status = true;
+			categoryRepository.TUpdate(x);
 			return RedirectToAction("Index");
 		}
 	}

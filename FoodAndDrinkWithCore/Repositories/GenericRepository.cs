@@ -35,17 +35,17 @@ namespace FoodAndDrinkWithCore.Repositories
 		public void TRemove(T p)
 		{
 
-			context.Set<T>().Add( p);
+			context.Set<T>().Remove( p);
 			context.SaveChanges();
 		}
 		public void TUpdate(T p)
 		{
-			context.Set<T>().Add(p);
+			context.Set<T>().Update(p);
 			context.SaveChanges();
 		}
-		public void TFind(int id)
+		public T TFind(int id)
 		{
-			context.Set<T>().Find(id);
+		return	context.Set<T>().Find(id);
 		}
 		public List<T>TList(string p)//food tablosunda category name veya categorye ait her şeyi gösterebilmek için. aynı işlemi yanı category sınıfında da food değerlerini gösterebiliriz
 		{
