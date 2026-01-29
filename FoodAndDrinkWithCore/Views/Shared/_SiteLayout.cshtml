@@ -227,9 +227,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="clearfix"> </div>
 	</div>
 	<!-- top-brands -->
-	<div class="top-brands">
-		<div class="container">
-			<h3>Hot Offers</h3>
+	
+			@await Component.InvokeAsync("FoodGetList")
 			@RenderBody()
 		</div>
 	</div>

@@ -268,4 +268,3 @@ wwwroot\web\services.html
 wwwroot\web\short-codes.html
 wwwroot\web\single.html
 wwwroot\web\vegetables.html
-wwwroot\web\w3layouts-License.txt
