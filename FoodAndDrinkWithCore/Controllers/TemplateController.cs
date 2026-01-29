@@ -11,5 +11,10 @@ namespace FoodAndDrinkWithCore.Controllers
 		{
 			return View();
 		}
+		public IActionResult CategoryDetails(int id)
+		{
+			ViewBag.x = id;
+			return View();
+		}
 	}
 }

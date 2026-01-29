@@ -1,5 +1,6 @@
 ﻿using FoodAndDrinkWithCore.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace FoodAndDrinkWithCore.Repositories
 {
@@ -54,6 +55,12 @@ namespace FoodAndDrinkWithCore.Repositories
 			
 			//Artık food repositoryden bir şey almamıza gerek kalmadı onun
 		//içindekileri sildik. şimdi devreye bu generic repoyu her yerde kullanmak için kalıtım giriyor
+
+		public List<T> List(Expression<Func<T,bool>>filter)
+		{
+			return context.Set<T>().Where(filter).ToList();//list isminde bir tane metod oluşturduk bu metodum liste türünde. liste türünde olduğu için bana tablo bazlı bir sonuç geriye dönücek. Expression ifadesi ve kendi tanımladığımız filter paramateresiyle yapmak istediğimiz ; ben bu tabloda isteidğim herhangi bir sütüna göre arama işlemi yapabileyim stok ,ürün adı , kategori adı. 
+			//bundan önce yukarda tanımladığımız TList metodu sadece string bir ifadeye göre arama işlemi yapmamızı sağlıyor amabiz burada category id ye göre veya ürün idye göre arama işlemi yapabiliyoruz
+		}
 
 	}
 }
