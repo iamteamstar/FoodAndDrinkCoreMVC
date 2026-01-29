@@ -254,3 +254,4 @@ C:\Users\technopc\Desktop\Full Stack Web\Backend\Files\FoodAndDrinkWithCore\Food
 C:\Users\technopc\Desktop\Full Stack Web\Backend\Files\FoodAndDrinkWithCore\FoodAndDrinkWithCore\bin\Debug\net8.0\X.PagedList.dll
 C:\Users\technopc\Desktop\Full Stack Web\Backend\Files\FoodAndDrinkWithCore\FoodAndDrinkWithCore\bin\Debug\net8.0\X.PagedList.Mvc.Core.dll
 C:\Users\technopc\Desktop\Full Stack Web\Backend\Files\FoodAndDrinkWithCore\FoodAndDrinkWithCore\obj\Debug\net8.0\FoodAndDrinkWithCore.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\technopc\Desktop\Full Stack Web\Backend\Files\FoodAndDrinkWithCore\FoodAndDrinkWithCore\bin\Debug\net8.0\FoodAndDrinkWithCore.staticwebassets.runtime.json
