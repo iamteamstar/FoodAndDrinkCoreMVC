@@ -2,7 +2,7 @@
 
 Bu proje, bir işletmenin gıda ve içecek stoklarını, kategorilerini ve istatistiklerini yönetmek amacıyla **ASP.NET Core MVC** kullanılarak geliştirilmiş bir yönetim (Admin) panelidir. Projede veri yönetimi için **Generic Repository Pattern** ve görselleştirme için **Google Charts** kullanılmıştır.
 
-## 🚀 Özellikler
+##  Özellikler
 * **Kategori Yönetimi:** Kategorilerin eklenmesi, listelenmesi ve durumlarının (True/False) yönetilmesi.
 * **Ürün (Food) Yönetimi:** Stok miktarı, fiyat ve kategori eşleştirmesi ile tam CRUD desteği.
 * **İstatistik Paneli:** Dashboard üzerinde toplam ürün, kategori sayısı ve max/min stok verileri.
@@ -10,7 +10,7 @@ Bu proje, bir işletmenin gıda ve içecek stoklarını, kategorilerini ve istat
 * **Pagination (Sayfalama):** Ürün listesinde verimli veri gösterimi.
 * **Authentication:** Yetkili girişi için güvenli Login ekranı.
 
-## 🛠️ Kullanılan Teknolojiler
+##  Kullanılan Teknolojiler
 * **.NET 8.0 / ASP.NET Core MVC**
 * **Entity Framework Core** (Code First)
 * **MS SQL Server**
@@ -18,11 +18,12 @@ Bu proje, bir işletmenin gıda ve içecek stoklarını, kategorilerini ve istat
 * **Google Charts API**
 * **Bootstrap** (UI/UX)
 
-## 📸 Ekran Görüntüleri
+##  Ekran Görüntüleri
 
 ### 1. Giriş Ekranı (Login)
 Sisteme erişim sağlayan yetkili giriş sayfası.
-> ![Login Sayfası](BURAYA_LOGIN_GORSEL_LINKI)
+> ![Login Sayfası]<img width="636" height="744" alt="Ekran görüntüsü 2026-01-29 183945" src="https://github.com/user-attachments/assets/2e488e8f-3bd0-4a92-8b3c-ab0ddd73f7df" />
+
 
 ### 2. Dashboard ve İstatistikler
 Sistemdeki genel verilerin (Toplam Gıda, Max/Min Stok, Ortalamalar) özetlendiği alan.
