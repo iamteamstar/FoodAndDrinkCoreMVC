@@ -8,7 +8,7 @@ namespace FoodAndDrinkWithCore.Controllers
 	public class CategoryController : Controller
 	{
 		CategoryRepository categoryRepository = new CategoryRepository(); //öncelikle kullanacağımız repositoryden bir nesne türetiriz
-
+		
 		public IActionResult Index()
 		{
 			return View(categoryRepository.TList());//daha sonra genetic repodaki isteidğimiz metodu çağırabiliriz.

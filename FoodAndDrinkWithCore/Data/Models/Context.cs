@@ -11,5 +11,6 @@ namespace FoodAndDrinkWithCore.Data.Models
 		//burada tanımlanan entity sınıfları veri tabanında tablolar olarak oluşturulacak migration islemi yapıldığında
 		public DbSet<Food> foods { get; set; }
 		public DbSet<Category> categories { get; set; }
+		public DbSet<Admin> admins { get; set; }
 	}
 }
