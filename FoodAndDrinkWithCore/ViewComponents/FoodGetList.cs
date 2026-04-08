@@ -5,10 +5,10 @@ namespace FoodAndDrinkWithCore.ViewComponents
 {
 	public class FoodGetList:ViewComponent
 	{
-		public IViewComponentResult Invoke()
+		public async Task<IViewComponentResult> InvokeAsync()
 		{
 			FoodRepository foodRepository = new FoodRepository();
-			var foodList = foodRepository.TList();
+			var foodList = await foodRepository.TListAsync();
 			return View(foodList);
 		}
 	}

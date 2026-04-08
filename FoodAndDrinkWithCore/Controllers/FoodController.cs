@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using FoodAndDrinkWithCore.Data.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using X.PagedList.Extensions;
+using System.Threading.Tasks;
 
 namespace FoodAndDrinkWithCore.Controllers
 { 
@@ -11,9 +12,10 @@ namespace FoodAndDrinkWithCore.Controllers
 	Context c = new Context();
 		FoodRepository foodRepository = new FoodRepository();
 
-		public IActionResult Index(int page=1)
+		public async Task<IActionResult> Index(int page = 1)
 		{
-			return View(foodRepository.TList("Category").ToPagedList(page,4));//category sınıfından bir değer alacağımız için(name) parametre olarak onu yazdık
+			var foods = await foodRepository.TListAsync("Category");
+			return View(foods.ToPagedList(page, 4));
 		}
 		[HttpGet]	
 		public IActionResult FoodAdd()//amacımız liste nesnesi oluşturmak, daha sonra bu listedeki değerleri viewbag ile dropdowna view tarafına göndereceğiz ve oradan da verileri listelemeyi yapacağız.
@@ -29,7 +31,7 @@ namespace FoodAndDrinkWithCore.Controllers
 			return View();
 		}
 		[HttpPost]
-		public IActionResult FoodAdd(Food _food)
+		public async Task<IActionResult> FoodAdd(Food _food)
 		{
 			ModelState.Remove("Category");
 
@@ -46,19 +48,18 @@ namespace FoodAndDrinkWithCore.Controllers
 				return View(_food); // Verileri kaybetmemek için _food modelini geri gönder
 			}
 
-			foodRepository.TAdd(_food);
+			await foodRepository.TAddAsync(_food);
 			return RedirectToAction("Index");
 		}
 
-		public IActionResult FoodRemove(int id)
+		public async Task<IActionResult> FoodRemove(int id)
 		{
-			
-			foodRepository.TRemove(new Food { FoodID=id});
+			await foodRepository.TRemoveAsync(new Food { FoodID = id });
 			return RedirectToAction("Index");
 		}
-		public IActionResult FoodFind(int id)
+		public async Task<IActionResult> FoodFind(int id)
 		{
-			var x = foodRepository.TFind(id);
+			var x = await foodRepository.TFindAsync(id);
 			List<SelectListItem> categoryValues = (from y in c.categories.ToList()
 												   select new SelectListItem
 												   {
@@ -80,16 +81,16 @@ namespace FoodAndDrinkWithCore.Controllers
 			return View(food);
 		}
 		[HttpPost]
-		public IActionResult FoodUpdate(Food _food)
+		public async Task<IActionResult> FoodUpdate(Food _food)
 		{
-			var x = foodRepository.TFind(_food.FoodID);
+			var x = await foodRepository.TFindAsync(_food.FoodID);
 			x.FoodName = _food.FoodName;
 			x.FoodPrice = _food.FoodPrice;
 			x.FoodStock = _food.FoodStock;
 			x.FoodDesc = _food.FoodDesc;
 			x.FoodImageUrl = _food.FoodImageUrl;
 			x.CategoryID = _food.CategoryID;
-			foodRepository.TUpdate(x);
+			await foodRepository.TUpdateAsync(x);
 			return RedirectToAction("Index");
 		}
 	}
