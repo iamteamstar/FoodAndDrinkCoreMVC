@@ -1,6 +1,7 @@
 ﻿using FoodAndDrinkWithCore.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace FoodAndDrinkWithCore.Repositories
 {
@@ -23,42 +24,42 @@ namespace FoodAndDrinkWithCore.Repositories
 		 */
 		//5 temel crud işleminin tamamını birer metot olarak burada tanımlayacağız:listeleme,ekleme,silme,güncelleme,getirme
 		Context context = new Context();
-		public List<T> TList()
+		public async Task<List<T>> TListAsync()
 		{
-			return context.Set<T>().ToList();//listeleme işlemimiz bu şekilde olacak
+			return await context.Set<T>().ToListAsync();//listeleme işlemimiz bu şekilde olacak
 
 		}
-		public void TAdd(T p)
+		public async Task TAddAsync(T p)
 		{
 			context.Set<T>().Add(p);
-			context.SaveChanges();
+			await context.SaveChangesAsync();
 		}
-		public void TRemove(T p)
+		public async Task TRemoveAsync(T p)
 		{
 
 			context.Set<T>().Remove( p);
-			context.SaveChanges();
+			await context.SaveChangesAsync();
 		}
-		public void TUpdate(T p)
+		public async Task TUpdateAsync(T p)
 		{
 			context.Set<T>().Update(p);
-			context.SaveChanges();
+			await context.SaveChangesAsync();
 		}
-		public T TFind(int id)
+		public async Task<T> TFindAsync(int id)
 		{
-		return	context.Set<T>().Find(id);
+			return await context.Set<T>().FindAsync(id);
 		}
-		public List<T>TList(string p)//food tablosunda category name veya categorye ait her şeyi gösterebilmek için. aynı işlemi yanı category sınıfında da food değerlerini gösterebiliriz
+		public async Task<List<T>>TListAsync(string p)//food tablosunda category name veya categorye ait her şeyi gösterebilmek için. aynı işlemi yanı category sınıfında da food değerlerini gösterebiliriz
 		{
-			return context.Set<T>().Include(p).ToList();
+			return await context.Set<T>().Include(p).ToListAsync();
 		}
 			
 			//Artık food repositoryden bir şey almamıza gerek kalmadı onun
 		//içindekileri sildik. şimdi devreye bu generic repoyu her yerde kullanmak için kalıtım giriyor
 
-		public List<T> List(Expression<Func<T,bool>>filter)
+		public async Task<List<T>> ListAsync(Expression<Func<T,bool>>filter)
 		{
-			return context.Set<T>().Where(filter).ToList();//list isminde bir tane metod oluşturduk bu metodum liste türünde. liste türünde olduğu için bana tablo bazlı bir sonuç geriye dönücek. Expression ifadesi ve kendi tanımladığımız filter paramateresiyle yapmak istediğimiz ; ben bu tabloda isteidğim herhangi bir sütüna göre arama işlemi yapabileyim stok ,ürün adı , kategori adı. 
+			return await context.Set<T>().Where(filter).ToListAsync();//list isminde bir tane metod oluşturduk bu metodum liste türünde. liste türünde olduğu için bana tablo bazlı bir sonuç geriye dönücek. Expression ifadesi ve kendi tanımladığımız filter paramateresiyle yapmak istediğimiz ; ben bu tabloda isteidğim herhangi bir sütüna göre arama işlemi yapabileyim stok ,ürün adı , kategori adı. 
 			//bundan önce yukarda tanımladığımız TList metodu sadece string bir ifadeye göre arama işlemi yapmamızı sağlıyor amabiz burada category id ye göre veya ürün idye göre arama işlemi yapabiliyoruz
 		}
 
