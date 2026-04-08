@@ -9,9 +9,9 @@ namespace FoodAndDrinkWithCore.Controllers
 	{
 		CategoryRepository categoryRepository = new CategoryRepository(); //öncelikle kullanacağımız repositoryden bir nesne türetiriz
 		
-		public IActionResult Index()
+		public async Task <IActionResult> Index()
 		{
-			return View(categoryRepository.TList());//daha sonra genetic repodaki isteidğimiz metodu çağırabiliriz.
+			return View(await categoryRepository.TListAsync());//daha sonra genetic repodaki isteidğimiz metodu çağırabiliriz.
 		}
 
 		[HttpGet]
@@ -20,7 +20,7 @@ namespace FoodAndDrinkWithCore.Controllers
 			return View();
 		}
 		[HttpPost]
-public IActionResult CategoryAdd(Category _category)
+public async Task<IActionResult> CategoryAdd(Category _category)
 {
     _category.status = true; // Yeni eklenen kategori varsayılan olarak aktif olsun
     ModelState.Remove("status"); // Validasyondan bu alanı muaf tut
@@ -30,12 +30,12 @@ public IActionResult CategoryAdd(Category _category)
     {
         return View("CategoryAdd");
     }
-    categoryRepository.TAdd(_category);
+    await categoryRepository.TFindAsync(_category.CategoryID);
     return RedirectToAction("Index");
 }
-		public IActionResult CategoryFind(int id)
+		public async Task <IActionResult> CategoryFind(int id)
 		{
-			var x = categoryRepository.TFind(id);
+			var x = await categoryRepository.TFindAsync(id);
 			Category category = new Category()
 			{
 				CategoryName=x.CategoryName,
@@ -47,20 +47,20 @@ public IActionResult CategoryAdd(Category _category)
 			return View(category);
 		}
 		[HttpPost]
-		public IActionResult CategoryUpdate(Category _category)
+		public async Task<IActionResult> CategoryUpdate(Category _category)
 		{
-			var x = categoryRepository.TFind(_category.CategoryID);
+			var x = await categoryRepository.TFindAsync(_category.CategoryID);
 			x.CategoryName = _category.CategoryName;
 			x.CategoryDesc = _category.CategoryDesc;
 			x.status = true;
-			categoryRepository.TUpdate(x);
+			await categoryRepository.TUpdateAsync(x);
 			return RedirectToAction("Index");
 		}
-		public IActionResult CategoryRemove(int id)
+		public async Task<IActionResult> CategoryRemove(int id)
 		{
-			var x = categoryRepository.TFind(id);
+			var x = await categoryRepository.TFindAsync(id);
 			x.status = false;//silme işlemini iliklili tablolarda statüyü false yaparak yapıyoruz
-			categoryRepository.TUpdate(x);
+			await categoryRepository.TUpdateAsync(x);
 			return RedirectToAction("Index");
 		}
 	}
