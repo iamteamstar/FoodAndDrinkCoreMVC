@@ -5,13 +5,17 @@ namespace FoodAndDrinkWithCore.Controllers
 {
 	public class StatisticsController : Controller
 	{
+		private readonly Context c;
+		public StatisticsController(Context context)
+		{
+			c = context;
+		}
 		public IActionResult Index()
 		{
 			return View();
 		}
 		public IActionResult StatisticDesign()
 		{
-			Context c = new Context();
 
 			var totF = c.foods.Count();
 			ViewBag.d1 = totF;

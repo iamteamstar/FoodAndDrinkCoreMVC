@@ -6,6 +6,11 @@ namespace FoodAndDrinkWithCore.Controllers
 {
 	public class ChartController : Controller
 	{
+		private readonly Context _context;
+		public ChartController(Context context)
+		{
+			_context = context;
+		}
 		public IActionResult Index()
 		{
 			return View();
@@ -55,14 +60,13 @@ namespace FoodAndDrinkWithCore.Controllers
 		public List<DynamicChartClass> FoodList()
 		{
 			List<DynamicChartClass> cs2 = new List<DynamicChartClass>();
-			using (var c = new Context())
-			{
-				cs2 = c.foods.Select(x => new DynamicChartClass
+		{
+				cs2 = _context.foods.Select(x => new DynamicChartClass
 				{
 					FoodName = x.FoodName,
 					FoodStock = x.FoodStock
 				}).ToList();
-			}
+			
 				return cs2;
 		}
 

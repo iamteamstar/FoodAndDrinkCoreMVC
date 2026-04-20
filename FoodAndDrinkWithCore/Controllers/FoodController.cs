@@ -10,7 +10,11 @@ namespace FoodAndDrinkWithCore.Controllers
 { 
 	public class FoodController : Controller
 	{
-	Context c = new Context();
+		private readonly Context _context;
+		public FoodController(Context context)
+		{
+			_context = context;
+		}
 		FoodRepository foodRepository = new FoodRepository();
 		
 		public async Task<IActionResult> Index(int page = 1)
@@ -21,7 +25,7 @@ namespace FoodAndDrinkWithCore.Controllers
 		[HttpGet]	
 		public IActionResult FoodAdd()//amacımız liste nesnesi oluşturmak, daha sonra bu listedeki değerleri viewbag ile dropdowna view tarafına göndereceğiz ve oradan da verileri listelemeyi yapacağız.
 		{
-		List<SelectListItem> categoryValues = (from x in c.categories.ToList() //parantez ieçrisinde dropdownun içeriisnin doldurulacağı ve bu listeye atanacak öğelerin barındırılacağı propertyleri  tanımlamamız gerek yani categorynin değerlerini çağırıcağız. amacımız foodun içerisinde bu yiyeceklerin kategorisinin ne olduğunu göstermek. ondan dolayı bunu [HttpGet] attributunun içinnde çağırıcağız nedeni bu işlem sayfa yğklendiği zaman gelsin istiyoruz
+		List<SelectListItem> categoryValues = (from x in _context.categories.ToList() //parantez ieçrisinde dropdownun içeriisnin doldurulacağı ve bu listeye atanacak öğelerin barındırılacağı propertyleri  tanımlamamız gerek yani categorynin değerlerini çağırıcağız. amacımız foodun içerisinde bu yiyeceklerin kategorisinin ne olduğunu göstermek. ondan dolayı bunu [HttpGet] attributunun içinnde çağırıcağız nedeni bu işlem sayfa yğklendiği zaman gelsin istiyoruz
 											   select new SelectListItem //bana yeni bir liste öğesi oluştur
 											   {
 												   Text = x.CategoryName,
@@ -38,7 +42,7 @@ namespace FoodAndDrinkWithCore.Controllers
 
 			if (!ModelState.IsValid)
 			{
-				List<SelectListItem> categoryValues = (from x in c.categories.ToList()
+				List<SelectListItem> categoryValues = (from x in _context.categories.ToList()
 													   select new SelectListItem
 													   {
 														   Text = x.CategoryName,
@@ -61,7 +65,7 @@ namespace FoodAndDrinkWithCore.Controllers
 		public async Task<IActionResult> FoodFind(int id)
 		{
 			var x = await foodRepository.TFindAsync(id);
-			List<SelectListItem> categoryValues = (from y in c.categories.ToList()
+			List<SelectListItem> categoryValues = (from y in _context.categories.ToList()
 												   select new SelectListItem
 												   {
 													   Text = y.CategoryName,
@@ -92,7 +96,7 @@ namespace FoodAndDrinkWithCore.Controllers
 			x.FoodImageUrl = _food.FoodImageUrl;
 			x.CategoryID = _food.CategoryID;
 			await foodRepository.TUpdateAsync(x);
-			EntityEntry entry = c.Entry(x);
+			EntityEntry entry = _context.Entry(x);
 			Console.WriteLine($"entity state: {entry.State}");
 			return RedirectToAction("Index");
 		}

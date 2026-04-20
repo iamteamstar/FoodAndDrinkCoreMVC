@@ -1,8 +1,6 @@
 ﻿using FoodAndDrinkWithCore.Data.Models;
 using FoodAndDrinkWithCore.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using FoodAndDrinkWithCore.Data.Models;
-
 namespace FoodAndDrinkWithCore.Controllers
 {
 	public class CategoryController : Controller

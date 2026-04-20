@@ -9,7 +9,11 @@ namespace FoodAndDrinkWithCore.Controllers
 {
 	public class LoginController : Controller
 	{
-		Context c = new Context();
+		private readonly Context _context;
+		public LoginController(Context context)
+		{
+			_context= context;
+		}
 		[AllowAnonymous]
 		[HttpGet]
 		public IActionResult Index()
@@ -20,7 +24,7 @@ namespace FoodAndDrinkWithCore.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Index(Admin _admin)
 		{
-			var girisBilgi = c.admins.FirstOrDefault(x => x.AdminUserName == _admin.AdminUserName && x.AdminPassword == _admin.AdminPassword);
+			var girisBilgi = _context.admins.FirstOrDefault(x => x.AdminUserName == _admin.AdminUserName && x.AdminPassword == _admin.AdminPassword);
 			if( girisBilgi !=null)
 			{
 				var claim = new List<Claim>
