@@ -4,6 +4,7 @@ using FoodAndDrinkWithCore.Data.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using X.PagedList.Extensions;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace FoodAndDrinkWithCore.Controllers
 { 
@@ -11,7 +12,7 @@ namespace FoodAndDrinkWithCore.Controllers
 	{
 	Context c = new Context();
 		FoodRepository foodRepository = new FoodRepository();
-
+		
 		public async Task<IActionResult> Index(int page = 1)
 		{
 			var foods = await foodRepository.TListAsync("Category");
@@ -91,6 +92,8 @@ namespace FoodAndDrinkWithCore.Controllers
 			x.FoodImageUrl = _food.FoodImageUrl;
 			x.CategoryID = _food.CategoryID;
 			await foodRepository.TUpdateAsync(x);
+			EntityEntry entry = c.Entry(x);
+			Console.WriteLine($"entity state: {entry.State}");
 			return RedirectToAction("Index");
 		}
 	}

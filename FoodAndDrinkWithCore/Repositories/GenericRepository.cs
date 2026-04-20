@@ -42,7 +42,6 @@ namespace FoodAndDrinkWithCore.Repositories
 		}
 		public async Task TUpdateAsync(T p)
 		{
-			context.Set<T>().Update(p);
 			await context.SaveChangesAsync();
 		}
 		public async Task<T> TFindAsync(int id)
